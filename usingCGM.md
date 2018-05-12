@@ -15,4 +15,10 @@ provides methods for uploading both glucose and events into a database.
 If you are using the G4, refer to the user manual for how to enter your insulin injections
 and your carbohydrate consumption.  Then try to enter the events as you perform them:  injections
 and carbohydrate consumption.  Yes, it is tedious to count carbohydrates, so perhaps a
-"cheat sheet" for your frequent meals, dishes and treats could be helpful.  
+"cheat sheet" for your frequent meals, dishes and treats could be helpful.
+
+Also refer to the website 
+http://machinenoiselearning.com/the-evolving-self/record-insulin-injections-and-carbs-consumption-into-your-cgm
+for step-by-step instructions for using the Dexcom G4 meter to enter injection and carbohydrate events.
+
+
