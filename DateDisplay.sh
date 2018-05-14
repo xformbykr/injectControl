@@ -6,8 +6,6 @@ function calc
     awk "BEGIN {print $* }";
 }
 
-export NODE_PATH=~/Projects/reverse_engineering/openAPS/
-
 DATE=$1
 echo Display Dexcom Info for Date $DATE
 echo Glucose:
