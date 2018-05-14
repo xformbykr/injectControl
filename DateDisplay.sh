@@ -45,5 +45,4 @@ echo "Delta BG:  $DELTA_BG"
 (( $DELTA_BG < 0)) && echo "Comment:  negative delta BG means too much   insulin was used; CR too low?"
 (( $DELTA_BG == 0)) && echo "Comment:  zero delta BG means insulin was used; CR seems accurate."
 ## ----------------------------------------------------------------------
-#  wish this worked, but 'aggregate' cannot pretty-print from shell
-# /usr/bin/mongo dexcomcgm --quiet --eval "db.treatments.aggregate( [{\$match: {\"display_time\": /$DATE/, \"event_type\": \"INSULIN\"} }, { \$group: {_id: \"\", totalAmount: {\$sum: \"\$event_value\" }, count: {\$sum: 1} }} ] ).pretty()"
+
