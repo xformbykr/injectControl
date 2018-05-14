@@ -1,0 +1,38 @@
+# Terminal commands for setting up Mongodb for use with Dexcom G4 CGM
+# to be run from top-level directory where openAPS was installed.
+
+sudo apt-get install mongodb
+
+#  run the mongodb client. short session to create two 'collections'
+#  that each enforce unique ID's, rejecting duplicates.  The final
+#  two 'find' operations should both return nothing but the prompt.
+
+mongo
+> use dexcomcgm
+> db.createCollection(“glucose”, { capped : true, autoIndexId : true, size : 
+   6142800, max : 10000 }) 
+> db.createCollection(“treatments”, { capped : true, autoIndexId : true, size : 
+   6142800, max : 10000 })
+> db.glucose.find()
+> db.treatments.find()
+> exit
+
+# plug in Dexcom via USB.
+# use openaps to retrieve a glucose reading from it:
+openaps use DexcomG4 iter_glucose 1
+#  see response in curly braces:  { .... }
+
+# obtain 1 week of glucose readings, saving to a file 'tmpGlucose.json':
+ openaps use DexcomG4 iter_glucose 2016 > tmpGlucose.json
+ 
+ # import data into mongo db from file 'tmpGlucose.json'
+ mongoimport -d dexcomcgm -c glucose --jsonArray < tmpGlucose.json
+ 
+ # use openaps to retrieve treatment events from it:
+ openaps use DexcomG4 user_event_data > tmpTreatments.json
+
+ # import data into mongo db from file 'tmpTreatments.json'
+ mongoimport -d dexcomcgm -c treatments --jsonArray < tmpTreatments.json
+
+ 
+   
